@@ -1,0 +1,18 @@
+git init
+
+git pullgit sttus 
+git add . / carpeta
+git commit -m "descripcion"
+git push 
+
+
+
+1. Copiar el contenido de una rama a otra usando merge
+Este comando copiará los cambios de rama_origen a rama_destino. Si hay conflictos, Git te pedirá que los resuelvas antes de completar el merge.
+
+
+
+git checkout rama_destino
+git merge rama_origen
+
+2. Copiar el contenido de una rama a otra usando rebase
