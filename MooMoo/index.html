@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moomoo Fav'</title>
+    <style>
+        /* Reset de márgenes y fuentes */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+
+        /* Colores principales */
+        :root {
+            --color-primary: #8a2be2;
+            --color-secondary: #4b0082;
+            --color-light: #f0f0f0;
+            --color-dark: #121212;
+            --text-color-light: #333;
+            --text-color-dark: #f9f9f9;
+        }
+
+        body.light-mode {
+            background-color: var(--color-light);
+            color: var(--text-color-light);
+        }
+
+        body.dark-mode {
+            background-color: var(--color-dark);
+            color: var(--text-color-dark);
+        }
+
+        /* Estilo general de la página */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        header img.logo {
+            height: 100px;
+        }
+
+
+
+        /* ... otros estilos ... */
+
+        header .title {
+            font-size: 3.5em;
+            color: #1fec8d;
+            /* Cambia este color al que prefieras */
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, "Oi", serif;
+            font-weight: 100;
+        }
+
+        /* ... otros estilos ... */
+
+        body.light-mode header .title {
+            color: #adf33d;
+            /* Color para el modo claro */
+        }
+
+        body.dark-mode header .title {
+            color: #9dbb2f;
+            /* Color para el modo oscuro */
+        }
+
+
+
+
+
+
+        /* ... otros estilos ... */
+
+        /* Switch del modo oscuro */
+        .switch-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            margin-left: 10px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            border-radius: 24px;
+            cursor: pointer;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 3px;
+            background-color: white;
+            border-radius: 50%;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: var(--color-secondary);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Estilo de la sección de productos */
+        .members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .members-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .members-card:hover {
+            transform: scale(1.05);
+        }
+
+        .members-image {
+            width: 110%;
+            height: 700px;
+            object-fit: cover;
+        }
+
+        .members-info {
+            padding: 15px;
+        }
+
+        .members-info h3 {
+            color: var(--color-primary);
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .members-info p {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .buy-button {
+            background-color: var(--color-secondary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .buy-button:hover {
+            background-color: var(--color-primary);
+        }
+
+        .members-button {
+            background-color: var(--color-secondary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .members-button:hover {
+            background-color: var(--color-primary);
+        }
+
+        /* Estilos básicos para el footer */
+        footer {
+            background-color: #aa89c9;
+            /* Azul */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .footer-enlaces {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .footer-enlaces a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-enlaces a:hover {
+            color: #ffeb3b;
+            /* Color amarillo en hover */
+        }
+
+        .footer-enlaces a i {
+            font-size: 1.5rem;
+            /* Tamaño de iconos */
+        }
+
+        /* Créditos */
+        .footer-creditos {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+
+
+        /* Estilo del banner de oferta */
+        .offer-banner {
+            background-color: #ff4da6;
+            color: white;
+            padding: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
+
+    <!-- Enlace a Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body class="light-mode">
+    <header>
+        <img src="html/images/logo.jpg" alt="Logo Moomoo Fav’" class="logo">
+        <span class="title">Moomoo Fav’</span>
+        <div class="switch-container">
+            <span>Modo Oscuro</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+
+
+    <!-- Banner de oferta -->
+    <div class="offer-banner">
+        ¡Celebra el mes de cumpleaños de nuestro grupo de Kpop favorito! <br>
+        Disfruta un 20% de descuento en todas tus compras.
+    </div>
+
+
+    <section class="members">
+        <!-- Ejemplo de productos (integrantes del grupo) -->
+        <div class="members-card">
+            <img src="html/images/solar_perfil.jpg" alt="Solar" class="members-image">
+            <div class="members-info">
+                <h3>Solar</h3>
+                <p>Líder, Vocalista y Bailarina</p>
+                <!--  llamar a esta función - opcion 2-->
+                <button class="members-button" onclick="redirigirAPagina('html/detalles_solar.html')">Detalles sonbre
+                    Solar</button>
+                <!-- <button class="buy-button" onclick="comprarProducto('Solar')">Comprar ahora</button>-->
+            </div>
+        </div>
+        <div class="members-card">
+            <img src="html/images/moonbyul_perfil.jpg" alt="Moonbyul" class="members-image">
+            <div class="members-info">
+                <h3>Moonbyul</h3>
+                <p>Rapera, Vocalista y Bailarina.</p>
+                <!--  llamar a esta función - opcion 1-->
+                <button class="members-button" onclick="redirigirDetalleIntegrante()">Detalles sonbre Moonbyul</button>
+                <!-- <button class="buy-button" onclick="comprarProducto('Moonbyul')">Comprar ahora</button>-->
+            </div>
+        </div>
+        <div class="members-card">
+            <img src="html/images/Mamamoo.jpg" alt="Mamamoo" class="members-image">
+            <div class="members-info">
+                <h3>store_Mamamoo</h3>
+                <p>Adquiere los mejores productos de Mamamoo.</p>
+                <button class="members-button" onclick="redirigirAPagina('html/store.html')">Store_Mamamoo</button>
+                <!-- <button class="buy-button" onclick="comprarProducto('Mamamoo')">Comprar ahora</button>-->
+            </div>
+        </div>
+        <div class="members-card">
+            <img src="html/images/Hwasa_perfil.jpg" alt="Hwasa" class="members-image">
+            <div class="members-info">
+                <h3>Hwasa</h3>
+                <p>Vocalista y Bailarina.</p>
+                <button class="members-button" onclick="redirigirAPagina('html/detalles_Hwasa.html')">Detalles sonbre
+                    Hwasa</button>
+                <!--  <button class="buy-button" onclick="comprarProducto('Hwasa')">Comprar ahora</button>-->
+            </div>
+        </div>
+        <div class="members-card">
+            <img src="html/images/Wheein_perfil.jpg" alt="Wheein" class="members-image">
+            <div class="members-info">
+                <h3>Wheein</h3>
+                <p>Vocalista, Rapera, Bailarina y Maknae.</p>
+                <button class="members-button" onclick="redirigirAPagina('html/detalles_wheein.html')">Detalles sonbre
+                    Wheein</button>
+                <!-- <button class="buy-button" onclick="comprarProducto('Wheein')">Comprar ahora</button>-->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Funcionalidad del botón de modo oscuro
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode');
+        });
+
+        // Opción 1: Funciones de redirección específicas para cada página
+        function redirigirDetalleIntegrante() {
+            window.location.href = 'html/detalles_byul.html';
+        }
+        // Opción 2: Función genérica de redirección
+        function redirigirAPagina(url) {
+            window.location.href = url;
+        }
+
+
+
+        // Función para redirigir a WhatsApp con el mensaje predefinido
+        function comprarProducto(producto) {
+            const mensaje = `Hola 👋🏻, estoy interesado(a) en el ${producto}, que vi en la tienda 🏪 ¿Podrías darme más información?  Gracias.`;
+            const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+
+            // Envío de evento a Google Analytics
+            if (typeof gtag === 'function') {
+                gtag('event', 'click', {
+                    'event_category': 'Compra',
+                    'event_label': producto
+                });
+            }
+        }
+    </script>
+
+
+    <!-- Footer con enlaces externos -->
+    <footer>
+        <h3>Enlaces Externos</h3>
+        <div class="footer-enlaces">
+            <a href="https://x.com/rbw_mamamoo" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com/RBW.MAMAMOO/" target="_blank" title="Facebook"><i
+                    class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/mamamoo_official/?hl=es" target="_blank" title="Instagram"><i
+                    class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/channel/UCuhAUMLzJxlP1W7mEk0_6lA" target="_blank" title="YouTube"><i
+                    class="fab fa-youtube"></i></a>
+        </div>
+        <div class="footer-creditos">
+            &copy; 2024 Mamamoo Fansite. Todos los derechos reservados.
+        </div>
+    </footer>
+</body>
+
+</html>

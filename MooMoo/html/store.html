@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Moomoo</title>
+    <style>
+        /* Reset básico */
+        /* Reset de márgenes y fuentes */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+
+        /* Colores principales */
+        :root {
+            --color-primary: #8a2be2;
+            --color-secondary: #4b0082;
+            --color-light: #f0f0f0;
+            --color-dark: #121212;
+            --text-color-light: #333;
+            --text-color-dark: #f9f9f9;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        .dark-mode {
+            background-color: var(--color-dark);
+            color: var(--text-color-dark);
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+
+        header img.logo {
+            height: 100px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo img {
+            height: 30px;
+            margin-right: 0.5rem;
+        }
+
+        /* Switch del modo oscuro */
+        .switch-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .dark-mode-switch label {
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Sección de productos */
+        .product-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .product {
+            background-color: #f1f1f1;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            width: 200px;
+            width: 250px;
+            overflow: hidden;
+            /* Oculta cualquier parte de la imagen que salga del contenedor */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Sombra suave */
+            transition: transform 0.3s ease-in-out;
+        }
+
+
+        .product img {
+            width: 100%;
+            height: 100;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+            /* Transición suave al hacer zoom */
+        }
+
+        /* Efecto de zoom al pasar el ratón */
+        .producto:hover img {
+            transform: scale(2.2);
+            /* Ajusta el valor para controlar el nivel de zoom */
+        }
+
+        .product h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .product p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .product button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .product button:hover {
+            background-color: #0056b3;
+        }
+
+        .dark-mode .product {
+            background-color: #444;
+        }
+
+     /* Estilos básicos para el footer */
+ footer {
+            background-color: #aa89c9; /* Azul */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .footer-enlaces {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .footer-enlaces a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-enlaces a:hover {
+            color: #ffeb3b; /* Color amarillo en hover */
+        }
+
+        .footer-enlaces a i {
+            font-size: 1.5rem;
+        }
+
+        /* Botón de regreso */
+        .boton-regresar {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #8b9daf; /* Color rojo */
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .boton-regresar:hover {
+            background-color: #6a0dad; /* Color más oscuro en hover */
+        }
+
+        /* Créditos */
+        .footer-creditos {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            margin-top: 15px;
+        }
+
+    </style>
+      <!-- Enlace a Font Awesome para los iconos -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.jpg" alt="Logo Moomoo Fav’" class="logo"> <!-- Reemplaza con la URL de tu logotipo -->
+            Store Mamamoo - K-pop
+        </div>
+        <div class="dark-mode-switch">
+            <input type="checkbox" id="darkModeToggle">
+            <label for="darkModeToggle">Modo Oscuro</label>
+        </div>
+    </header>
+
+    <section class="product-section">
+
+        <!-- Producto gp -->
+        <div class="product">
+            <img src="images/store/grupal.jpg" alt="Solar" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Tarjetas fotográficas de alta calidad de Mamamoo</h3>
+            <p>$12.000</p>
+            <button onclick="comprarProducto('Producto gp')">Comprar ahora</button>
+        </div>
+
+        <!-- Producto 11 -->
+        <div class="product">
+            <img src="images/store/solar3.jpg" alt="Solar" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Photocard Solar x5</h3>
+            <p>$13.000</p>
+            <button onclick="comprarProducto('Producto 11')">Comprar ahora</button>
+        </div>
+
+        <!-- Producto 12 -->
+        <div class="product">
+            <img src="images/store/moonbyul.jpg" alt="Moonbyul" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Photocard Moonbyul x5</h3>
+            <p>$13.000</p>
+            <button onclick="comprarProducto('Producto 12')">Comprar ahora</button>
+        </div>
+
+        <!-- Producto 13 -->
+        <div class="product">
+            <img src="images/store/hwasa1.jpg" alt="Hwasa" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Photocard Hwasa x5</h3>
+            <p>$13.000</p>
+            <button onclick="comprarProducto('Producto 13')">Comprar ahora</button>
+        </div>
+        <!-- Producto 10 -->
+        <div class="product">
+            <img src="images/store/whein2.jpg" alt="Wheein" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Photocard Wheein x5</h3>
+            <p>$3.000</p>
+            <button onclick="comprarProducto('Producto 10')">Comprar ahora</button>
+        </div>
+
+        <!-- Producto 1 -->
+        <div class="product">
+            <img src="images/store/pulseras.png" alt="Pulsera" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Pulsera inspirado nombre del miembro K-Pop Bead + Photocard Grupal</h3>
+            <p>$10.000</p>
+            <button onclick="comprarProducto('Producto 1')">Comprar ahora</button>
+        </div>
+
+
+        <!-- Producto 3 -->
+        <div class="product">
+            <img src="images/store/solar.jpg" alt="Photocard" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Photocard/h3>
+                <p>$3.000</p>
+                <button onclick="comprarProducto('Producto 3')">Comprar ahora</button>
+        </div>
+
+        <!-- Producto 4 -->
+        <div class="product">
+            <img src="images/store/byul.jpg" alt="Photocard" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Photocard</h3>
+            <p>$3.000</p>
+            <button onclick="comprarProducto('Producto 4')">Comprar ahora</button>
+        </div>
+        <!-- Producto 5 -->
+        <div class="product">
+            <img src="images/store/whein.jpg" alt="Photocard" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Photocard</h3>
+            <p>$3.000</p>
+            <button onclick="comprarProducto('Producto 5')">Comprar ahora</button>
+        </div>
+        <!-- Producto 6 -->
+        <div class="product">
+            <img src="images/store/hwasa.jpg" alt="Photocard" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Photocard</h3>
+            <p>$3.000</p>
+            <button onclick="comprarProducto('Producto 6')">Comprar ahora</button>
+        </div>
+        <!-- Producto 2 -->
+        <div class="product">
+            <img src="images/store/llavero.webp" alt="Llaveros" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Llaveros Kpop Lightstick</h3>
+            <p>$8.000</p>
+            <button onclick="comprarProducto('Producto 2')">Comprar ahora</button>
+        </div>
+
+        <!-- Producto 8 -->
+        <div class="product">
+            <img src="images/store/mm6.jpg" alt="Photocard" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Photocard Grupal</h3>
+            <p>$5.000</p>
+            <button onclick="comprarProducto('Producto 8')">Comprar ahora</button>
+        </div>
+        <!-- Producto 9 -->
+        <div class="product">
+            <img src="images/store/moonsun.jpg" alt="Moonsun" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Photocards Moonsun</h3>
+            <p>$2.000</p>
+            <button onclick="comprarProducto('Producto 9')">Comprar ahora</button>
+        </div>
+        <!-- Producto 15 -->
+        <div class="product">
+            <img src="images/store/merchcp.webp" alt="Sudadera" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Sudadera con capucha con logotipo de Mamamoo</h3>
+            <p>$130.000</p>
+            <button onclick="comprarProducto('Producto 15')">Comprar ahora</button>
+        </div>
+        <!-- Producto 14 -->
+        <div class="product">
+            <img src="images/store/wh.jpg" alt="Bebida" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Soju - Bebida</h3>
+            <p>$45.000</p>
+            <button onclick="comprarProducto('Producto 14')">Comprar ahora</button>
+        </div>
+
+        <!-- Producto 7 -->
+        <div class="product">
+            <img src="images/store/light.jpg" alt="Lightstick" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Lightstick Kpop</h3>
+            <p>$250.000</p>
+            <button onclick="comprarProducto('Producto 7')">Comprar ahora</button>
+        </div>
+        <!-- Producto 16 -->
+        <div class="product">
+            <img src="images/store/mm1.jpg" alt="Photocard" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Photocard Grupal</h3>
+            <p>$5.000</p>
+            <button onclick="comprarProducto('Producto 16')">Comprar ahora</button>
+        </div>
+        <!-- Producto 17 -->
+        <div class="product">
+            <img src="images/store/merch.jpg" alt="merch" class="members-image">
+            <!-- Reemplaza con la URL de tu imagen -->
+            <h3>Camisa kpop merch - MAMAMOO My Con Tour</h3>
+            <p>$90.000</p>
+            <button onclick="comprarProducto('Producto 17')">Comprar ahora</button>
+        </div>
+
+
+
+    </section>
+
+
+
+    <script>
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', darkModeToggle.checked);
+        });
+
+        // Función para abrir WhatsApp con un mensaje de producto
+        function comprarProducto(producto) {
+            const mensaje = `👋Hola, estoy interesado(a) en el ${producto}, que vi en la tienda 🏪 ¿Podrías darme más información?  Gracias.`;
+            const urlWhatsApp = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+            window.open(urlWhatsApp, '_blank');
+
+            // Enviar evento de Google Analytics
+            if (typeof gtag === 'function') {
+                gtag('event', 'click', {
+                    event_category: 'Compra',
+                    event_label: producto,
+                    value: 1
+                });
+            }
+        }
+
+        // Función para redirigir a la página principal
+        function regresarPaginaPrincipal() {
+            window.location.href = '/index.html'; // Cambia 'index.html' por la URL de tu página principal
+        }
+    </script>
+
+
+    <!-- Footer con enlaces externos y botón de regreso -->
+   <!-- Footer con enlaces externos -->
+ <footer>
+    <h3>Enlaces Externos</h3>
+    <div class="footer-enlaces">
+        <a href="https://x.com/rbw_mamamoo" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/RBW.MAMAMOO/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/mamamoo_official/?hl=es" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/channel/UCuhAUMLzJxlP1W7mEk0_6lA" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+
+        <!-- Botón de regreso a la página principal -->
+        <button class="boton-regresar" onclick="regresarPaginaPrincipal()">Regresar a la Página Principal</button>
+
+    <div class="footer-creditos">
+        &copy; 2024 Mamamoo Fansite. Todos los derechos reservados.
+    </div>
+</footer>
+</body>
+
+</html>
